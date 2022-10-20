@@ -9,23 +9,23 @@ import UIKit
 
 class PracticeViewController: UIViewController {
     
-    let practiceView = PracticeView()
+    let practiceModel = PracticeModel()
     let viewModel = PracticeViewModel()
     
     override func loadView() {
-        self.view = practiceView
+        self.view = practiceModel
     }
     
     override func viewDidLoad() {
         practiceBindData()
-        viewModel.requestPhoto(id: practiceView.id)
+        viewModel.requestPhoto(id: practiceModel.id)
     }
     
     func practiceBindData() {
         viewModel.practice.bind { practice in
-            self.practiceView.idLable.text = practice.id
-            self.practiceView.descriptionLable.text = practice.description
-            self.practiceView.likesLable.text = "\(practice.likes ?? 0)"
+            self.practiceModel.idLable.text = practice.id
+            self.practiceModel.descriptionLable.text = practice.description
+            self.practiceModel.likesLable.text = "\(practice.likes ?? 0)"
         }
     }
     
