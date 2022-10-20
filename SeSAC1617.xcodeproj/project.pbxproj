@@ -26,7 +26,7 @@
 		BC999F57290186960067E44B /* PracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC999F56290186960067E44B /* PracticeViewController.swift */; };
 		BC999F59290186A30067E44B /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC999F58290186A30067E44B /* PracticeViewModel.swift */; };
 		BC999F5B290186B10067E44B /* PhotoPractice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC999F5A290186B10067E44B /* PhotoPractice.swift */; };
-		BC999F5D29018A360067E44B /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC999F5C29018A360067E44B /* PracticeView.swift */; };
+		BC999F5D29018A360067E44B /* PracticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC999F5C29018A360067E44B /* PracticeModel.swift */; };
 		BCA277B328FE2DB3008B3A18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA277B228FE2DB3008B3A18 /* AppDelegate.swift */; };
 		BCA277B528FE2DB3008B3A18 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA277B428FE2DB3008B3A18 /* SceneDelegate.swift */; };
 		BCA277B728FE2DB3008B3A18 /* SimpleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA277B628FE2DB3008B3A18 /* SimpleTableViewController.swift */; };
@@ -73,7 +73,7 @@
 		BC999F56290186960067E44B /* PracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewController.swift; sourceTree = "<group>"; };
 		BC999F58290186A30067E44B /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
 		BC999F5A290186B10067E44B /* PhotoPractice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPractice.swift; sourceTree = "<group>"; };
-		BC999F5C29018A360067E44B /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
+		BC999F5C29018A360067E44B /* PracticeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeModel.swift; sourceTree = "<group>"; };
 		BCA277AF28FE2DB3008B3A18 /* SeSAC1617.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC1617.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCA277B228FE2DB3008B3A18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCA277B428FE2DB3008B3A18 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 		BC999F55290186390067E44B /* MVVMPractice */ = {
 			isa = PBXGroup;
 			children = (
-				BC999F5C29018A360067E44B /* PracticeView.swift */,
+				BC999F5C29018A360067E44B /* PracticeModel.swift */,
 				BC999F58290186A30067E44B /* PracticeViewModel.swift */,
 				BC999F56290186960067E44B /* PracticeViewController.swift */,
 				BC999F5A290186B10067E44B /* PhotoPractice.swift */,
@@ -364,7 +364,7 @@
 				BC999F3E2900EDF30067E44B /* APIService.swift in Sources */,
 				BC999F3128FF90700067E44B /* DiffableCollectionViewController.swift in Sources */,
 				BC999F362900D13A0067E44B /* NewsViewController.swift in Sources */,
-				BC999F5D29018A360067E44B /* PracticeView.swift in Sources */,
+				BC999F5D29018A360067E44B /* PracticeModel.swift in Sources */,
 				BCA277B328FE2DB3008B3A18 /* AppDelegate.swift in Sources */,
 				BC999F5B290186B10067E44B /* PhotoPractice.swift in Sources */,
 				BC999F442900EF750067E44B /* SearchPhoto.swift in Sources */,

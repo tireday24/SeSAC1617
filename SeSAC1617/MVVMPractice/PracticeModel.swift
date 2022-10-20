@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class PracticeView: UIView{
+class PracticeModel: UIView {
     
     var id = ""
     let idLable = UILabel()
