@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC35D28B29065430006A2C37 /* RxCocoaPracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC35D28A29065430006A2C37 /* RxCocoaPracticeViewController.swift */; };
 		BC88AD39290623140075D30C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = BC88AD38290623140075D30C /* RxCocoa */; };
 		BC88AD3B290623140075D30C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC88AD3A290623140075D30C /* RxSwift */; };
 		BC88AD3E290625BC0075D30C /* RXCocoaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC88AD3D290625BC0075D30C /* RXCocoaViewController.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC35D28A29065430006A2C37 /* RxCocoaPracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxCocoaPracticeViewController.swift; sourceTree = "<group>"; };
 		BC88AD3D290625BC0075D30C /* RXCocoaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXCocoaViewController.swift; sourceTree = "<group>"; };
 		BC999F3028FF90700067E44B /* DiffableCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableCollectionViewController.swift; sourceTree = "<group>"; };
 		BC999F332900CF830067E44B /* CObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CObservable.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				BC88AD3D290625BC0075D30C /* RXCocoaViewController.swift */,
+				BC35D28A29065430006A2C37 /* RxCocoaPracticeViewController.swift */,
 			);
 			path = RX;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				BCA277B328FE2DB3008B3A18 /* AppDelegate.swift in Sources */,
 				BC999F5B290186B10067E44B /* PhotoPractice.swift in Sources */,
 				BC999F442900EF750067E44B /* SearchPhoto.swift in Sources */,
+				BC35D28B29065430006A2C37 /* RxCocoaPracticeViewController.swift in Sources */,
 				BC999F59290186A30067E44B /* PracticeViewModel.swift in Sources */,
 				BCA277B528FE2DB3008B3A18 /* SceneDelegate.swift in Sources */,
 				BC999F382900D2410067E44B /* NewsViewModel.swift in Sources */,
@@ -568,6 +572,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D6A93QYKAF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSAC1617/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -595,6 +600,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D6A93QYKAF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSAC1617/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

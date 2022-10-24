@@ -36,6 +36,40 @@ class RXCocoaViewController: UIViewController {
     
     func setOperator() {
         
+        //넥스트 이벤트 무한 방출
+        //왜 필요하나 5번만 반복해라 이런 경우 사용
+//        Observable.repeatElement("Jack")
+//        .take(5)
+//            .subscribe { value in
+//                print("repeat - \(value)")
+//            } onError: { error in
+//                print("error")
+//            } onCompleted: {
+//                print("repeat completed")
+//            } onDisposed: {
+//                print("repeat disposed")
+//            }
+//            .disposed(by: disposeBag)
+        
+        //1초마다 숫자 1씩 증가 무한한 시퀀스가 동작하는구나
+        //화면 전환이 되더라도 deinit 되지 않고 계속 실행된다
+        let intervalObservable = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+            .subscribe { value in
+                print("just - \(value)")
+            } onError: { error in
+                print("error")
+            } onCompleted: {
+                print("just completed")
+            } onDisposed: {
+                print("just disposed")
+            }
+            //.disposed(by: disposeBag)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            intervalObservable.dispose()
+        }
+        
+        
         let itemsA = [3.3, 4.0, 5.0, 2.0, 3.6, 4.7]
         let itemsB = [2.3, 2.0, 1.3]
         
