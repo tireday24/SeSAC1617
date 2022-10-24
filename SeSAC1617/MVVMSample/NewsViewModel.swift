@@ -14,9 +14,8 @@ class NewsViewModel {
     
     //뉴스 추가 변화 뷰모델에 추가
     //이 데이터 기반으로 스냅샷 만듬
+    //신호만 줄 수 있다
     var sample: CObservable<[News.NewsItem]> = CObservable(News.items)
-    
-    
     
     //변화시 바인드로 바꿈
     
