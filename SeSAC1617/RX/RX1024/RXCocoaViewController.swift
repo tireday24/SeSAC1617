@@ -20,11 +20,32 @@ class RXCocoaViewController: UIViewController {
     @IBOutlet weak var signEmail: UITextField!
     @IBOutlet weak var signButton: UIButton!
     
+    @IBOutlet weak var nickNameLabel: UILabel!
     
-    let disposeBag = DisposeBag()
+    //메모리 관리를 도와주는 객체
+    var disposeBag = DisposeBag()
+    
+    //문자열 보내는 중
+    var nickname = Observable.just("Jack")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nickname
+            .bind(to: nickNameLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        //subject -> Observable + Observer subscribe + next 가능
+        //Publish
+        //Behavior
+        //Replay
+        //Async
+        
+        //DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            //Observable emit만 가능(전달만) 새롭게 값을 넣어주는 것 불가능
+            //이미 존재하는 객체에 대해서만 보여줄 수 있다
+            //self.nickname = "HELLO"
+        //}
 
         setTableView()
         setPickerView()
@@ -34,40 +55,86 @@ class RXCocoaViewController: UIViewController {
         
     }
     
+    //viewController가 deinit이 되면 알아서 dispose도 동작한다
+    //또는 DisposeBag() 객체를 새롭게 넣어주거나, nil 할당 => 예외 케이스!(rootVC에 interval이 있다면?)
+    //rootViewController면 deinit 호출 안됨 -> 특정 시점에 dispose 해주어야한다
+    deinit {
+        print("RXCocoaExampleViewController")
+    }
+    
     func setOperator() {
         
         //넥스트 이벤트 무한 방출
         //왜 필요하나 5번만 반복해라 이런 경우 사용
-//        Observable.repeatElement("Jack")
-//        .take(5)
-//            .subscribe { value in
-//                print("repeat - \(value)")
-//            } onError: { error in
-//                print("error")
-//            } onCompleted: {
-//                print("repeat completed")
-//            } onDisposed: {
-//                print("repeat disposed")
-//            }
-//            .disposed(by: disposeBag)
-        
-        //1초마다 숫자 1씩 증가 무한한 시퀀스가 동작하는구나
-        //화면 전환이 되더라도 deinit 되지 않고 계속 실행된다
-        let intervalObservable = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+        Observable.repeatElement("Jack") //Infinite Observable Sequence
+        .take(5) // Finite Observable Sequence
+        //옵저버에 대한 요소
+        //emit(결과) 끝나고 난 뒤 메모리 올라 갈 필요 없음 리소스 정리 필요 확인 -> dispose(리소스 정리하는 객체) deinite에 print에 넣는 것과 유사
             .subscribe { value in
-                print("just - \(value)")
+                print("repeat - \(value)")
             } onError: { error in
                 print("error")
             } onCompleted: {
-                print("just completed")
+                print("repeat completed")
             } onDisposed: {
-                print("just disposed")
+                print("repeat disposed")
             }
-            //.disposed(by: disposeBag)
+        //by? 매개변수 여부
+        //2가지 역할은 동일하다
+            .disposed(by: disposeBag)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            intervalObservable.dispose()
-        }
+        //1초마다 숫자 1씩 증가 무한한 시퀀스가 동작하는구나
+        //화면 전환이 되더라도 deinit 되지 않고 계속 실행된다
+         Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+            .subscribe { value in
+                print("interval - \(value)")
+            } onError: { error in
+                print("error")
+            } onCompleted: {
+                print("interval completed")
+            } onDisposed: {
+                print("interval disposed")
+            }
+            .disposed(by: disposeBag)
+        
+//        let intervalObservable2 = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+//           .subscribe { value in
+//               print("interval - \(value)")
+//           } onError: { error in
+//               print("error")
+//           } onCompleted: {
+//               print("interval completed")
+//           } onDisposed: {
+//               print("interval disposed")
+//           }
+//           .disposed(by: disposeBag)
+//
+//        let intervalObservable3 = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+//           .subscribe { value in
+//               print("interval - \(value)")
+//           } onError: { error in
+//               print("error")
+//           } onCompleted: {
+//               print("interval completed")
+//           } onDisposed: {
+//               print("interval disposed")
+//           }
+//           .disposed(by: disposeBag)
+        
+        //DisposeBag: 리소스 해제 관리 -
+            // 1. 시퀀스 끝날 때 but bind는 OnNext만 전달해서 끝나는게 없지 않나?
+            // 2. class deinit이 잘 된다면 자동 해제 (bind) -> deinit이 되지 않으면 리소스 정리 안됨 반대로 deinit이 안되면 dispose 의미x
+            // 3. dispose 직접 호출 -> dispose() 구독하는 것 마다 별도로 관리해주어야 한다 하나라도 빠지면 무한 호출 될 수 있다
+            // 4. DisposeBag을 새롭게 할당하거나 nil 전달.
+        
+        //DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            //클래스가 교체가 되면서 기존에 있던 리소스는 정리가 되더라
+            //갯수에 대한 걱정은 하지 않아도 됨
+            //self.disposeBag = DisposeBag() // 한번에 리소스 정리 할 때 사용됨 리소스에 대한 참조 유지 역할
+//            intervalObservable.dispose()
+//            intervalObservable2.dispose()
+//            intervalObservable3.dispose()
+        //}
         
         
         let itemsA = [3.3, 4.0, 5.0, 2.0, 3.6, 4.7]
@@ -77,7 +144,7 @@ class RXCocoaViewController: UIViewController {
             .subscribe { value in
                 print("just - \(value)")
             } onError: { error in
-                print("error")
+                print("\(error)")
             } onCompleted: {
                 print("just completed")
             } onDisposed: {
@@ -89,7 +156,7 @@ class RXCocoaViewController: UIViewController {
             .subscribe { value in
                 print("of - \(value)")
             } onError: { error in
-                print("error")
+                print("\(error)")
             } onCompleted: {
                 print("of completed")
             } onDisposed: {
@@ -101,7 +168,7 @@ class RXCocoaViewController: UIViewController {
             .subscribe { value in
                 print("from - \(value)")
             } onError: { error in
-                print("error")
+                print("\(error)")
             } onCompleted: {
                 print("from completed")
             } onDisposed: {
@@ -109,7 +176,6 @@ class RXCocoaViewController: UIViewController {
             }
             .disposed(by: disposeBag)
 
-        
     }
     
     func setSign() {
@@ -141,10 +207,13 @@ class RXCocoaViewController: UIViewController {
         
         //tap = touchupinside
         //tap에 대한 기능이 반응형으로 바뀌지 않기 때문에 subscribe
+        
+        //참조 중이라 deinit 안됨 -> ARC 카운트 못하게 막음
         signButton.rx.tap
-            .subscribe { _ in
-                self.showAlert()
-            }
+            .withUnretained(self) //weak self 대신 쓰면 연산자 안써도 됨
+            .subscribe(onNext: { vc, _ in
+                vc.showAlert() //vc가 weak self가 되는거다
+            })
             .disposed(by: disposeBag)
         
     }
