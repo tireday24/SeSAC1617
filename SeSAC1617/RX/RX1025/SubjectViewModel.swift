@@ -25,6 +25,7 @@ class SubjectViewModel {
     
     var list = PublishSubject<[Contact]>()
     
+    
     func fetchData() {
         //리스트에 컨텍트 데이터 추가하겠다
         list.onNext(contactData)
