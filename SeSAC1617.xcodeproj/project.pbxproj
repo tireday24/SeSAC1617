@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BC35D28B29065430006A2C37 /* RxCocoaPracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC35D28A29065430006A2C37 /* RxCocoaPracticeViewController.swift */; };
+		BC35D2A729067D2C006A2C37 /* SimplePickerExamplePracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC35D2A629067D2C006A2C37 /* SimplePickerExamplePracticeViewController.swift */; };
 		BC88AD39290623140075D30C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = BC88AD38290623140075D30C /* RxCocoa */; };
 		BC88AD3B290623140075D30C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC88AD3A290623140075D30C /* RxSwift */; };
 		BC88AD3E290625BC0075D30C /* RXCocoaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC88AD3D290625BC0075D30C /* RXCocoaViewController.swift */; };
@@ -41,6 +42,9 @@
 		BCA277D428FE2DB4008B3A18 /* SeSAC1617UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA277D328FE2DB4008B3A18 /* SeSAC1617UITests.swift */; };
 		BCA277D628FE2DB4008B3A18 /* SeSAC1617UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA277D528FE2DB4008B3A18 /* SeSAC1617UITestsLaunchTests.swift */; };
 		BCA277E328FE390E008B3A18 /* SimpleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA277E228FE390E008B3A18 /* SimpleCollectionViewController.swift */; };
+		BCC3DC682906852D00A45D94 /* NumbersPracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC3DC672906852D00A45D94 /* NumbersPracticeViewController.swift */; };
+		BCC3DC6A2906877500A45D94 /* SimpleValidationPracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC3DC692906877500A45D94 /* SimpleValidationPracticeViewController.swift */; };
+		BCC3DC6C2906922400A45D94 /* SimpleTableViewExamplePracticeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC3DC6B2906922400A45D94 /* SimpleTableViewExamplePracticeController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		BC35D28A29065430006A2C37 /* RxCocoaPracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxCocoaPracticeViewController.swift; sourceTree = "<group>"; };
+		BC35D2A629067D2C006A2C37 /* SimplePickerExamplePracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePickerExamplePracticeViewController.swift; sourceTree = "<group>"; };
 		BC88AD3D290625BC0075D30C /* RXCocoaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXCocoaViewController.swift; sourceTree = "<group>"; };
 		BC999F3028FF90700067E44B /* DiffableCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableCollectionViewController.swift; sourceTree = "<group>"; };
 		BC999F332900CF830067E44B /* CObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CObservable.swift; sourceTree = "<group>"; };
@@ -94,6 +99,9 @@
 		BCA277D328FE2DB4008B3A18 /* SeSAC1617UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSAC1617UITests.swift; sourceTree = "<group>"; };
 		BCA277D528FE2DB4008B3A18 /* SeSAC1617UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSAC1617UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BCA277E228FE390E008B3A18 /* SimpleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCollectionViewController.swift; sourceTree = "<group>"; };
+		BCC3DC672906852D00A45D94 /* NumbersPracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersPracticeViewController.swift; sourceTree = "<group>"; };
+		BCC3DC692906877500A45D94 /* SimpleValidationPracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleValidationPracticeViewController.swift; sourceTree = "<group>"; };
+		BCC3DC6B2906922400A45D94 /* SimpleTableViewExamplePracticeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewExamplePracticeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +139,10 @@
 			children = (
 				BC88AD3D290625BC0075D30C /* RXCocoaViewController.swift */,
 				BC35D28A29065430006A2C37 /* RxCocoaPracticeViewController.swift */,
+				BC35D2A629067D2C006A2C37 /* SimplePickerExamplePracticeViewController.swift */,
+				BCC3DC672906852D00A45D94 /* NumbersPracticeViewController.swift */,
+				BCC3DC692906877500A45D94 /* SimpleValidationPracticeViewController.swift */,
+				BCC3DC6B2906922400A45D94 /* SimpleTableViewExamplePracticeController.swift */,
 			);
 			path = RX;
 			sourceTree = "<group>";
@@ -388,12 +400,16 @@
 				BC999F5D29018A360067E44B /* PracticeModel.swift in Sources */,
 				BCA277B328FE2DB3008B3A18 /* AppDelegate.swift in Sources */,
 				BC999F5B290186B10067E44B /* PhotoPractice.swift in Sources */,
+				BCC3DC6A2906877500A45D94 /* SimpleValidationPracticeViewController.swift in Sources */,
 				BC999F442900EF750067E44B /* SearchPhoto.swift in Sources */,
 				BC35D28B29065430006A2C37 /* RxCocoaPracticeViewController.swift in Sources */,
 				BC999F59290186A30067E44B /* PracticeViewModel.swift in Sources */,
+				BC35D2A729067D2C006A2C37 /* SimplePickerExamplePracticeViewController.swift in Sources */,
 				BCA277B528FE2DB3008B3A18 /* SceneDelegate.swift in Sources */,
 				BC999F382900D2410067E44B /* NewsViewModel.swift in Sources */,
+				BCC3DC682906852D00A45D94 /* NumbersPracticeViewController.swift in Sources */,
 				BC999F402900EE370067E44B /* APIKey.swift in Sources */,
+				BCC3DC6C2906922400A45D94 /* SimpleTableViewExamplePracticeController.swift in Sources */,
 				BC999F3C2900ED690067E44B /* DiffableViewModel.swift in Sources */,
 				BC88AD3E290625BC0075D30C /* RXCocoaViewController.swift in Sources */,
 			);
