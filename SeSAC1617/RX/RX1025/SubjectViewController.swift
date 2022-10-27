@@ -69,16 +69,11 @@ class SubjectViewController: UIViewController {
                 vc.viewModel.filterData(query: value)
             }
             .disposed(by: disposeBag)
-
-        
     }
-    
- 
-    
-    
 }
 
 extension SubjectViewController {
+    
     func asyncSubject() {
     
         
@@ -205,4 +200,5 @@ extension SubjectViewController {
 
         
     }
+    
 }

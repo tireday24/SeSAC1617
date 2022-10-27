@@ -7,13 +7,17 @@
 
 import UIKit
 import Kingfisher
+import RxSwift
+import RxCocoa
 
 class DifferableCollectionViewController: UIViewController {
-
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var viewModel = DiffableViewModel()
+    
+    let disposeBag = DisposeBag()
     
     //어떤 셀을 쓸지, 데이터 타입이 뭔지
     //private var cellRegistration: UICollectionView.CellRegistration<UICollectionViewListCell, String>!
@@ -27,32 +31,65 @@ class DifferableCollectionViewController: UIViewController {
         collectionView.collectionViewLayout = createLayout()
         collectionView.delegate = self
         configureDateSource()
+        bindData()
         
-        searchBar.delegate = self
+        //searchBar.delegate = self
         
-        viewModel.photoList.bind { photo in
+        //        viewModel.photoList.bind { photo in
+        //            //Initial numberOfItemInSection에 해당
+        //            var snapshot = NSDiffableDataSourceSnapshot<Int, SearchResult>()
+        //            snapshot.appendSections([0])
+        //            snapshot.appendItems(photo.results)
+        //            //ui 업뎃 연산 animation 들어가있다
+        //            self.dataSource.apply(snapshot)
+        
+    }
+    
+    
+    func bindData() {
+        viewModel.photoList.withUnretained(self).subscribe(onNext: { vc, photo in
             //Initial numberOfItemInSection에 해당
             var snapshot = NSDiffableDataSourceSnapshot<Int, SearchResult>()
             snapshot.appendSections([0])
             snapshot.appendItems(photo.results)
             //ui 업뎃 연산 animation 들어가있다
-            self.dataSource.apply(snapshot)
-        }
+            vc.dataSource.apply(snapshot)
+        }, onError: { error in
+            print("error => \(error)")
+        }, onCompleted: {
+            print("completed")
+        }, onDisposed: {
+            print("dispoesed")
+        })
+        .disposed(by: disposeBag)
+        
+        searchBar.rx.text.orEmpty
+            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .subscribe { (vc, value) in
+                vc.viewModel.requestSearchPhoto(query: value)
+            }
+        //DisposeBag()으로 받으면 바로 구독 해제됨 -> 새로운 인스턴스로 교체되니까 수동으로 disposeBag으로 구현됨
+        //.dispose() .disposed(by: DisposeBag()) 동일한가?
+            .disposed(by: disposeBag)
     }
 }
 
-extension DifferableCollectionViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        //유저가 검색 버튼 누르면 검색됨
-        viewModel.requestSearchPhoto(query: searchBar.text!)
-        
-        //기존 스냅샷
+
+
+//extension DifferableCollectionViewController: UISearchBarDelegate {
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        //유저가 검색 버튼 누르면 검색됨
+//        viewModel.requestSearchPhoto(query: searchBar.text!)
+//
+//        //기존 스냅샷
 //        var snapshot = dataSource.snapshot()
 //        //searchbar 검색 시
 //        snapshot.appendItems([searchBar.text!])
 //        dataSource.apply(snapshot, animatingDifferences: true)
-    }
-}
+//    }
+//}
 
 extension DifferableCollectionViewController {
     

@@ -30,7 +30,7 @@ class NewsViewController: UIViewController {
         configureHierachy()
         configureDataSource()
         bindData()
-        configureViews()
+        //configureViews()
         
     }
     
@@ -43,25 +43,18 @@ class NewsViewController: UIViewController {
 //
         //뉴스 추가 변경시 스냅샷 찍음
         //초기화 전에 선언되면 안됨 configureDataSource 함수 호출 전 사용x
-        viewModel.list.bind { item in
+        viewModel.list.withUnretained(self).bind { (vc, item) in
             var snapshot = NSDiffableDataSourceSnapshot<Int, News.NewsItem>()
             snapshot.appendSections([0])
             snapshot.appendItems(item)
-            self.dataSource.apply(snapshot, animatingDifferences: false)
+            vc.dataSource.apply(snapshot, animatingDifferences: false)
         }
+            .disposed(by: disposeBag)
         
       
-        
-
-        
-    }
-    
-    func configureViews() {
-//        numberTextField.addTarget(self, action: #selector(numberTextFieldChanged), for: .editingChanged)
-        
         numberTextField.rx.text.orEmpty
             .withUnretained(self)
-            .subscribe { (vc, text ) in
+            .bind { (vc, text ) in
                 vc.viewModel.changePageNumberFormat(text: text)
             }
             .disposed(by: disposeBag)
@@ -69,19 +62,47 @@ class NewsViewController: UIViewController {
         //resetButton.addTarget(self, action: #selector(resetButtonClicked), for: .touchUpInside)
         resetButton.rx.tap
             .withUnretained(self)
-            .subscribe{ (vc, _) in
+            .bind { (vc, _) in
                 vc.viewModel.resetSample()
             }
             .disposed(by: disposeBag)
         //loadButton.addTarget(self, action: #selector(loadButtonClicked), for: .touchUpInside)
         loadButton.rx.tap
             .withUnretained(self)
-            .subscribe{ (vc, _) in
+            .bind { (vc, _) in
                 vc.viewModel.loadSample()
             }
             .disposed(by: disposeBag)
+
+        
     }
     
+//    func configureViews() {
+//        numberTextField.addTarget(self, action: #selector(numberTextFieldChanged), for: .editingChanged)
+//
+//        numberTextField.rx.text.orEmpty
+//            .withUnretained(self)
+//            .bind { (vc, text ) in
+//                vc.viewModel.changePageNumberFormat(text: text)
+//            }
+//            .disposed(by: disposeBag)
+//
+//        resetButton.addTarget(self, action: #selector(resetButtonClicked), for: .touchUpInside)
+//        resetButton.rx.tap
+//            .withUnretained(self)
+//            .bind { (vc, _) in
+//                vc.viewModel.resetSample()
+//            }
+//            .disposed(by: disposeBag)
+//        loadButton.addTarget(self, action: #selector(loadButtonClicked), for: .touchUpInside)
+//        loadButton.rx.tap
+//            .withUnretained(self)
+//            .bind { (vc, _) in
+//                vc.viewModel.loadSample()
+//            }
+//            .disposed(by: disposeBag)
+//    }
+//
 //    @objc func numberTextFieldChanged() {
 //        //뷰 모델로 데이터 넘겨서 쉼표 찍게 해야함 데이터 가공 후 결과에 대한 데이터를 다시 뷰컨으로 넘겨주어야 한다
 //        //데이터를 매개변수로 전달

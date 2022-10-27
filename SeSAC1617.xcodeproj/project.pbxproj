@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BC35D28B29065430006A2C37 /* RxCocoaPracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC35D28A29065430006A2C37 /* RxCocoaPracticeViewController.swift */; };
 		BC35D2A729067D2C006A2C37 /* SimplePickerExamplePracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC35D2A629067D2C006A2C37 /* SimplePickerExamplePracticeViewController.swift */; };
+		BC676A9D2908CBC500CDE846 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC676A9C2908CBC500CDE846 /* SubscribeViewController.swift */; };
 		BC88AD39290623140075D30C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = BC88AD38290623140075D30C /* RxCocoa */; };
 		BC88AD3B290623140075D30C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC88AD3A290623140075D30C /* RxSwift */; };
 		BC88AD3E290625BC0075D30C /* RXCocoaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC88AD3D290625BC0075D30C /* RXCocoaViewController.swift */; };
@@ -69,6 +70,7 @@
 /* Begin PBXFileReference section */
 		BC35D28A29065430006A2C37 /* RxCocoaPracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxCocoaPracticeViewController.swift; sourceTree = "<group>"; };
 		BC35D2A629067D2C006A2C37 /* SimplePickerExamplePracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePickerExamplePracticeViewController.swift; sourceTree = "<group>"; };
+		BC676A9C2908CBC500CDE846 /* SubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
 		BC88AD3D290625BC0075D30C /* RXCocoaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXCocoaViewController.swift; sourceTree = "<group>"; };
 		BC96ED3929077A370031503D /* SubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectViewController.swift; sourceTree = "<group>"; };
 		BC999F3028FF90700067E44B /* DiffableCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableCollectionViewController.swift; sourceTree = "<group>"; };
@@ -138,11 +140,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC676A9B2908CBB400CDE846 /* RX1026 */ = {
+			isa = PBXGroup;
+			children = (
+				BC676A9C2908CBC500CDE846 /* SubscribeViewController.swift */,
+			);
+			path = RX1026;
+			sourceTree = "<group>";
+		};
 		BC88AD3C290625A30075D30C /* RX */ = {
 			isa = PBXGroup;
 			children = (
 				BCE6EE11290788B10065FF4A /* RX1024 */,
 				BCE6EE10290788A70065FF4A /* RX1025 */,
+				BC676A9B2908CBB400CDE846 /* RX1026 */,
 			);
 			path = RX;
 			sourceTree = "<group>";
@@ -423,6 +434,7 @@
 				BCA277B328FE2DB3008B3A18 /* AppDelegate.swift in Sources */,
 				BC999F5B290186B10067E44B /* PhotoPractice.swift in Sources */,
 				BCC3DC6A2906877500A45D94 /* SimpleValidationPracticeViewController.swift in Sources */,
+				BC676A9D2908CBC500CDE846 /* SubscribeViewController.swift in Sources */,
 				BC999F442900EF750067E44B /* SearchPhoto.swift in Sources */,
 				BC35D28B29065430006A2C37 /* RxCocoaPracticeViewController.swift in Sources */,
 				BC999F59290186A30067E44B /* PracticeViewModel.swift in Sources */,
