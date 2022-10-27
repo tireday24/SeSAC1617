@@ -58,7 +58,10 @@ class SubscribeViewController: UIViewController {
             .withUnretained(self)
         //무조건 메인쓰레드에서 동작 만약 에러가 발생한다면 런타임에러가 발생한다
             .bind { vc, _ in
-                vc.label.text = "안녕 반가워"
+                DispatchQueue.main.async {
+                    vc.label.text = "안녕 반가워" // -> 3번이랑 동일
+                }
+                
             }
             .disposed(by: disposeBag)
         

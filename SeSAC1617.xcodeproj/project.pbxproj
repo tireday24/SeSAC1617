@@ -48,6 +48,8 @@
 		BCC3DC6A2906877500A45D94 /* SimpleValidationPracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC3DC692906877500A45D94 /* SimpleValidationPracticeViewController.swift */; };
 		BCC3DC6C2906922400A45D94 /* SimpleTableViewExamplePracticeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC3DC6B2906922400A45D94 /* SimpleTableViewExamplePracticeController.swift */; };
 		BCE6EE0F290788A10065FF4A /* SubjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE6EE0E290788A10065FF4A /* SubjectViewModel.swift */; };
+		BCFE183E290A07CA00D7277B /* ValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE183D290A07CA00D7277B /* ValidationViewController.swift */; };
+		BCFE1840290A228D00D7277B /* ValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE183F290A228D00D7277B /* ValidationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,8 @@
 		BCC3DC692906877500A45D94 /* SimpleValidationPracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleValidationPracticeViewController.swift; sourceTree = "<group>"; };
 		BCC3DC6B2906922400A45D94 /* SimpleTableViewExamplePracticeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewExamplePracticeController.swift; sourceTree = "<group>"; };
 		BCE6EE0E290788A10065FF4A /* SubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectViewModel.swift; sourceTree = "<group>"; };
+		BCFE183D290A07CA00D7277B /* ValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationViewController.swift; sourceTree = "<group>"; };
+		BCFE183F290A228D00D7277B /* ValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +158,7 @@
 				BCE6EE11290788B10065FF4A /* RX1024 */,
 				BCE6EE10290788A70065FF4A /* RX1025 */,
 				BC676A9B2908CBB400CDE846 /* RX1026 */,
+				BCFE183C290A07A000D7277B /* RX1027 */,
 			);
 			path = RX;
 			sourceTree = "<group>";
@@ -272,6 +277,15 @@
 				BCC3DC6B2906922400A45D94 /* SimpleTableViewExamplePracticeController.swift */,
 			);
 			path = RX1024;
+			sourceTree = "<group>";
+		};
+		BCFE183C290A07A000D7277B /* RX1027 */ = {
+			isa = PBXGroup;
+			children = (
+				BCFE183F290A228D00D7277B /* ValidationViewModel.swift */,
+				BCFE183D290A07CA00D7277B /* ValidationViewController.swift */,
+			);
+			path = RX1027;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,12 +452,14 @@
 				BC999F442900EF750067E44B /* SearchPhoto.swift in Sources */,
 				BC35D28B29065430006A2C37 /* RxCocoaPracticeViewController.swift in Sources */,
 				BC999F59290186A30067E44B /* PracticeViewModel.swift in Sources */,
+				BCFE183E290A07CA00D7277B /* ValidationViewController.swift in Sources */,
 				BC35D2A729067D2C006A2C37 /* SimplePickerExamplePracticeViewController.swift in Sources */,
 				BC96ED3A29077A370031503D /* SubjectViewController.swift in Sources */,
 				BCA277B528FE2DB3008B3A18 /* SceneDelegate.swift in Sources */,
 				BCE6EE0F290788A10065FF4A /* SubjectViewModel.swift in Sources */,
 				BC999F382900D2410067E44B /* NewsViewModel.swift in Sources */,
 				BCC3DC682906852D00A45D94 /* NumbersPracticeViewController.swift in Sources */,
+				BCFE1840290A228D00D7277B /* ValidationViewModel.swift in Sources */,
 				BC999F402900EE370067E44B /* APIKey.swift in Sources */,
 				BCC3DC6C2906922400A45D94 /* SimpleTableViewExamplePracticeController.swift in Sources */,
 				BC999F3C2900ED690067E44B /* DiffableViewModel.swift in Sources */,
