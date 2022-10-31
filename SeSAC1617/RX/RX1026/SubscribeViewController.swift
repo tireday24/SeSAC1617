@@ -8,21 +8,76 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import RxAlamofire
+import RxDataSources
 
 class SubscribeViewController: UIViewController {
     
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     let disposeBag = DisposeBag()
+    
+    //lazy var?
+    lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, Int>>(configureCell: { dataSource, tableView, IndexPath, item in
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
+        cell.textLabel?.text = "\(item)"
+        return cell
+    })
+    
+    
+    func textRxAlamofire() {
+        //Success Error => <Single>
+        let url = APIKey.searchURL + "god"
+        request(.get, url, headers: ["Authorization": APIKey.authorization])
+            .data()
+            .decode(type: SearchPhoto.self, decoder: JSONDecoder())
+            .subscribe { value in
+                print(value.results[0].likes)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func testRxDataSource() {
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        dataSource.titleForHeaderInSection = { dataSource, index in
+            return dataSource.sectionModels[index].model
+        }
+        
+        Observable.just([
+            SectionModel(model: "title", items: [1, 2, 3]),
+            SectionModel(model: "title", items: [1, 2, 3]),
+            SectionModel(model: "title", items: [1, 2, 3])
+        ])
+            .bind(to: tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+       
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        textRxAlamofire()
+        testRxDataSource()
+        
+        Observable.of(1,2,3,4,5,6,7,8,9,10)
+            .skip(3)//4부터 전달
+            .filter { $0 % 2 == 0} // 4, 6, 8, 10
+            .map { $0 * 2 } // 8, 12, 16, 20
+            .subscribe { value in
+                
+            }
+            .disposed(by: disposeBag)
+        
         //탭 > 레이블: "안녕 반가워"
         
         //1.
-        button.rx.tap
+        let sample = button.rx.tap //reactive한 형태로 타입이 변함, ControlEvent<Void>형태로 변함
+        sample
             .subscribe { [weak self] _ in
                 self?.label.text = "안녕 반가워"
             }
@@ -66,7 +121,7 @@ class SubscribeViewController: UIViewController {
             .disposed(by: disposeBag)
         
         //5. operator로 데이터의 stream 조작
-        button.rx.tap.map { "안녕 반가워" } // 스트링 타입 변경
+        button.rx.tap.map { "안녕 반가워" } // 스트링 타입 변경, debug() -> //print+
             .bind(to: label.rx.text)
             .disposed(by: disposeBag)
         

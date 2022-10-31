@@ -33,7 +33,8 @@ class SubjectViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ContactCell")
         
         viewModel.list
-            .bind(to: tableView.rx.items(cellIdentifier: "ContactCell", cellType: UITableViewCell.self)) {(row, element, cell) in
+            .asDriver(onErrorJustReturn: [])
+            .drive(tableView.rx.items(cellIdentifier: "ContactCell", cellType: UITableViewCell.self)) {(row, element, cell) in
                 cell.textLabel?.text = "\(element.name): \(element.age)세 \(element.number)"
             }
             .disposed(by: disposeBag)
