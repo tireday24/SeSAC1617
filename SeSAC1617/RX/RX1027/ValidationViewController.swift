@@ -11,12 +11,12 @@ import RxCocoa
 
 class ValidationViewController: UIViewController {
     
-    let disposeBag = DisposeBag()
-    let viewModel = ValidationViewModel()
-    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var validationLabel: UILabel!
     @IBOutlet weak var stepButton: UIButton!
+    
+    let disposeBag = DisposeBag()
+    let viewModel = ValidationViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +28,41 @@ class ValidationViewController: UIViewController {
     
     func bind() {
         
+        //11.01
+        //뷰모델에 한번에 데이터 넘겨버림 (Input)
+        //Output은
+        //After
+        let input = ValidationViewModel.Input(text: nameTextField.rx.text, tap: stepButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
+        output.validation
+            .bind(to: stepButton.rx.isEnabled, validationLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        output.text
+            .drive(validationLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.validation
+            .withUnretained(self)
+            .bind { (vc, value) in
+                let color: UIColor = value ? .systemPink : .lightGray
+                vc.stepButton.backgroundColor = color
+            }
+            .disposed(by: disposeBag)
+        
+        output.tap
+            .bind { _ in
+                print("Show Alert")
+            }
+            .disposed(by: disposeBag)
+        
+        
         //타입 자체가 다르다
         //에러 핸들링은 없지만 에러가 생길 경우 예외 처리 해주어야한다
         //rxcocoa trait s -> b -> d
-        viewModel.validText
+        //Before
+        viewModel.validText // VM -> VC (output)
             .asDriver()
             .drive(validationLabel.rx.text)
             .disposed(by: disposeBag)
@@ -45,7 +76,7 @@ class ValidationViewController: UIViewController {
 //
 //        각각의 시퀀스가 독립시행 간편성을 위해서 묶은거지 실행의 빈도를 낮출수는 없다 불필요한 리소스 낭비가 날 수 있다
 //        메모리를 하나만 가지고 있었으면 좋겠는데 아닌 것 1:1
-        let validation = nameTextField.rx.text
+        let validation = nameTextField.rx.text //VC -> VM (Input)
             .orEmpty //String
             .map { $0.count >= 8 } //Bool
             .share() //Subject, Relay
@@ -57,7 +88,7 @@ class ValidationViewController: UIViewController {
 //                self.stepButton.isEnabled = value
 //                self.validationLabel.isHidden = value
 //            })
-        validation
+        validation //VC -> VM (Input)
             .bind(to: stepButton.rx.isEnabled, validationLabel.rx.isHidden)
             .disposed(by: disposeBag)
 

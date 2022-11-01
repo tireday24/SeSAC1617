@@ -32,42 +32,53 @@ class SubjectViewController: UIViewController {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ContactCell")
         
-        viewModel.list
-            .asDriver(onErrorJustReturn: [])
+        let input = SubjectViewModel.Input(addTap: addButton.rx.tap, resetTap: resetButton.rx.tap, newTap: newButton.rx.tap, searchText: searchBar.rx.text)
+        let output = viewModel.transform(input: input)
+        
+        
+
+//        viewModel.list //VM -> VC (Output)
+//            .asDriver(onErrorJustReturn: [])
+        
+        output.list
             .drive(tableView.rx.items(cellIdentifier: "ContactCell", cellType: UITableViewCell.self)) {(row, element, cell) in
                 cell.textLabel?.text = "\(element.name): \(element.age)세 \(element.number)"
             }
             .disposed(by: disposeBag)
         
-        addButton.rx.tap
+//        addButton.rx.tap
+        output.addTap
             .withUnretained(self)
             .subscribe { (vc, _) in
                 vc.viewModel.fetchData()
             }
             .disposed(by: disposeBag)
         
-        resetButton.rx.tap
+//        resetButton.rx.tap
+        output.resetTap
             .withUnretained(self)
             .subscribe {(vc, _) in
                 vc.viewModel.restData()
             }
             .disposed(by: disposeBag)
         
-        newButton.rx.tap
+        //newButton.rx.tap //VC -> VM(Input) tap
+        output.newTap
             .withUnretained(self)
             .subscribe {(vc, _) in
                 vc.viewModel.newData()
             }
             .disposed(by: disposeBag)
         
-        searchBar.rx.text.orEmpty
-            //.distinctUntilChanged() //같은 값을 받지 않는다
+//        searchBar.rx.text.orEmpty //VC -> VM(Input) tap
+//            .debounce(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)//wait 서버에서 콜수를 줄인다
+//            .distinctUntilChanged() //같은 값을 받지 않는다
+        output.searchText
             .withUnretained(self)
         //입력 끝나고 1초
-            .debounce(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)//wait 서버에서 콜수를 줄인다
             .subscribe {(vc, value) in
                 print("=====\(value)")
-                vc.viewModel.filterData(query: value)
+                vc.viewModel.filterData(query: value!)
             }
             .disposed(by: disposeBag)
     }
