@@ -43,11 +43,14 @@ class NewsViewController: UIViewController {
 //
         //뉴스 추가 변경시 스냅샷 찍음
         //초기화 전에 선언되면 안됨 configureDataSource 함수 호출 전 사용x
-        viewModel.list.withUnretained(self).bind { (vc, item) in
-            var snapshot = NSDiffableDataSourceSnapshot<Int, News.NewsItem>()
+        viewModel.list
+            .asDriver(onErrorJustReturn: [])
+            .drive { [weak self] item in
+                guard let self = self else { return }
+                var snapshot = NSDiffableDataSourceSnapshot<Int, News.NewsItem>()
             snapshot.appendSections([0])
             snapshot.appendItems(item)
-            vc.dataSource.apply(snapshot, animatingDifferences: false)
+                self.dataSource.apply(snapshot, animatingDifferences: false)
         }
             .disposed(by: disposeBag)
         

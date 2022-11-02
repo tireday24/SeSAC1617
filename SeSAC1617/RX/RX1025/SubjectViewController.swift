@@ -37,7 +37,7 @@ class SubjectViewController: UIViewController {
         
         
 
-//        viewModel.list //VM -> VC (Output)
+ //       viewModel.list //VM -> VC (Output)
 //            .asDriver(onErrorJustReturn: [])
         
         output.list
